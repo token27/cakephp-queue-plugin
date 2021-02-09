@@ -1,0 +1,645 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2021-02-01 03:01+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/QueueGroupsController.php:53
+#: Controller/QueueGroupsController.php:76
+msgid "The queue group has been saved."
+msgstr ""
+
+#: Controller/QueueGroupsController.php:57
+#: Controller/QueueGroupsController.php:80
+msgid "The queue group could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/QueueGroupsController.php:96
+msgid "The queue group has been deleted."
+msgstr ""
+
+#: Controller/QueueGroupsController.php:98
+msgid "The queue group could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/QueueLogsController.php:56
+#: Controller/QueueLogsController.php:81
+msgid "The queue log has been saved."
+msgstr ""
+
+#: Controller/QueueLogsController.php:60
+#: Controller/QueueLogsController.php:85
+msgid "The queue log could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/QueueLogsController.php:103
+msgid "The queue log has been deleted."
+msgstr ""
+
+#: Controller/QueueLogsController.php:105
+msgid "The queue log could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/QueueJobsController.php:56
+#: Controller/QueueJobsController.php:80
+msgid "The queue task has been saved."
+msgstr ""
+
+#: Controller/QueueJobsController.php:60
+#: Controller/QueueJobsController.php:84
+msgid "The queue task could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/QueueJobsController.php:101
+msgid "The queue task has been deleted."
+msgstr ""
+
+#: Controller/QueueJobsController.php:103
+msgid "The queue task could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/QueueWorkersController.php:53
+#: Controller/QueueWorkersController.php:76
+msgid "The queue worker has been saved."
+msgstr ""
+
+#: Controller/QueueWorkersController.php:57
+#: Controller/QueueWorkersController.php:80
+msgid "The queue worker could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/QueueWorkersController.php:96
+msgid "The queue worker has been deleted."
+msgstr ""
+
+#: Controller/QueueWorkersController.php:98
+msgid "The queue worker could not be deleted. Please, try again."
+msgstr ""
+
+#: Shell/QueueShell.php:44
+msgid "Show all the tasks list."
+msgstr ""
+
+#: Shell/QueueShell.php:47
+msgid "Use this command to SHOW all the tasks list."
+msgstr ""
+
+#: Shell/QueueShell.php:51
+msgid "The type of task to show."
+msgstr ""
+
+#: Shell/QueueShell.php:85
+msgid "Add task job."
+msgstr ""
+
+#: Shell/QueueShell.php:88
+msgid "Use this command to ADD task job in the queue list. Name syntax: If the file is QueueBackupTask.php, the name of the task is \"Backup\"."
+msgstr ""
+
+#: Shell/QueueShell.php:111
+msgid "View the queue task job details."
+msgstr ""
+
+#: Shell/QueueShell.php:114
+msgid "Use this command to view the queue job details."
+msgstr ""
+
+#: Shell/QueueShell.php:118
+msgid "The queue task id from database."
+msgstr ""
+
+#: Shell/QueueShell.php:126
+msgid "View queue jobs stats."
+msgstr ""
+
+#: Shell/QueueShell.php:129
+msgid "Use this command to view queue jobs stats."
+msgstr ""
+
+#: Shell/QueueShell.php:133
+msgid "The type of queue jobs to show."
+msgstr ""
+
+#: Shell/QueueShell.php:146
+#: Shell/QueueShell.php:149
+msgid "Use this command to CLEAN all/olds/locked queue task jobs."
+msgstr ""
+
+#: Shell/QueueShell.php:153
+msgid "The queue task type to clean."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:102
+msgid "Run a worker."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:105
+msgid "Use this command to RUN a workers."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:111
+msgid "Show all the workers."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:114
+msgid "Use this command to SHOW all the workers."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:118
+msgid "The type of workers to show."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:131
+msgid "View worker information."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:134
+msgid "Use this command to view worker information."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:138
+#: Shell/QueueWorkerShell.php:172
+msgid "The worker id/pid/name of the database."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:142
+#: Shell/QueueWorkerShell.php:176
+msgid "The worker server name."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:150
+msgid "View worker stats."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:153
+msgid "Use this command to VIEW worker STATS."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:157
+msgid "The worker id of the database."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:165
+msgid "Kill worker process."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:168
+msgid "Use this command to kill process and terminate the worker proccess."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:184
+msgid "Kill all worker process (allow multiserver)."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:187
+msgid "Use this command to kill all workers process and terminate."
+msgstr ""
+
+#: Shell/QueueWorkerShell.php:191
+msgid "The type of workers to kill."
+msgstr ""
+
+#: Shell/Task/QueueExecuteCommandTask.php:114
+msgid "Result of command: \""
+msgstr ""
+
+#: Shell/Task/QueueExecuteShellTask.php:135
+msgid "Result of cakephp shell: \""
+msgstr ""
+
+#: QueueGroups/add.php:10
+#: QueueGroups/edit.php:10
+#: QueueGroups/index.php:20
+#: QueueGroups/view.php:10
+#: QueueGroups/view.php:70
+#: QueueLogs/add.php:10
+#: QueueLogs/edit.php:10
+#: QueueLogs/index.php:21
+#: QueueLogs/view.php:10
+#: QueueJobs/add.php:10
+#: QueueJobs/edit.php:10
+#: QueueJobs/index.php:29
+#: QueueJobs/view.php:10
+#: QueueJobs/view.php:108
+#: QueueWorkers/add.php:10
+#: QueueWorkers/edit.php:10
+#: QueueWorkers/index.php:24
+#: QueueWorkers/view.php:10
+#: QueueWorkers/view.php:76
+#: QueueWorkers/view.php:122
+msgid "Actions"
+msgstr ""
+
+#: QueueGroups/add.php:11
+#: QueueGroups/edit.php:16
+#: QueueGroups/view.php:13
+msgid "List Queue Groups"
+msgstr ""
+
+#: QueueGroups/add.php:18
+msgid "Add Queue Group"
+msgstr ""
+
+#: QueueGroups/add.php:25
+#: QueueGroups/edit.php:30
+#: QueueLogs/add.php:27
+#: QueueLogs/edit.php:32
+#: QueueJobs/add.php:36
+#: QueueJobs/edit.php:41
+#: QueueWorkers/add.php:29
+#: QueueWorkers/edit.php:34
+msgid "Submit"
+msgstr ""
+
+#: QueueGroups/edit.php:12
+#: QueueGroups/index.php:35
+#: QueueGroups/view.php:95
+#: QueueLogs/edit.php:12
+#: QueueLogs/index.php:37
+#: QueueJobs/edit.php:12
+#: QueueJobs/index.php:53
+#: QueueJobs/view.php:123
+#: QueueWorkers/edit.php:12
+#: QueueWorkers/index.php:43
+#: QueueWorkers/view.php:91
+#: QueueWorkers/view.php:146
+msgid "Delete"
+msgstr ""
+
+#: QueueGroups/edit.php:14
+#: QueueGroups/index.php:35
+#: QueueGroups/view.php:12
+#: QueueGroups/view.php:95
+#: QueueLogs/edit.php:14
+#: QueueLogs/index.php:37
+#: QueueLogs/view.php:12
+#: QueueJobs/edit.php:14
+#: QueueJobs/index.php:53
+#: QueueJobs/view.php:12
+#: QueueJobs/view.php:123
+#: QueueWorkers/edit.php:14
+#: QueueWorkers/index.php:43
+#: QueueWorkers/view.php:12
+#: QueueWorkers/view.php:91
+#: QueueWorkers/view.php:146
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: QueueGroups/edit.php:23
+#: QueueGroups/view.php:11
+msgid "Edit Queue Group"
+msgstr ""
+
+#: QueueGroups/index.php:8
+#: QueueGroups/view.php:14
+msgid "New Queue Group"
+msgstr ""
+
+#: QueueGroups/index.php:9
+msgid "Queue Groups"
+msgstr ""
+
+#: QueueGroups/index.php:33
+#: QueueGroups/view.php:93
+#: QueueLogs/index.php:35
+#: QueueJobs/index.php:51
+#: QueueJobs/view.php:121
+#: QueueWorkers/index.php:41
+#: QueueWorkers/view.php:89
+#: QueueWorkers/view.php:144
+msgid "View"
+msgstr ""
+
+#: QueueGroups/index.php:34
+#: QueueGroups/view.php:94
+#: QueueLogs/index.php:36
+#: QueueJobs/index.php:52
+#: QueueJobs/view.php:122
+#: QueueWorkers/index.php:42
+#: QueueWorkers/view.php:90
+#: QueueWorkers/view.php:145
+msgid "Edit"
+msgstr ""
+
+#: QueueGroups/index.php:44
+#: QueueLogs/index.php:46
+#: QueueJobs/index.php:62
+#: QueueWorkers/index.php:52
+msgid "first"
+msgstr ""
+
+#: QueueGroups/index.php:45
+#: QueueLogs/index.php:47
+#: QueueJobs/index.php:63
+#: QueueWorkers/index.php:53
+msgid "previous"
+msgstr ""
+
+#: QueueGroups/index.php:47
+#: QueueLogs/index.php:49
+#: QueueJobs/index.php:65
+#: QueueWorkers/index.php:55
+msgid "next"
+msgstr ""
+
+#: QueueGroups/index.php:48
+#: QueueLogs/index.php:50
+#: QueueJobs/index.php:66
+#: QueueWorkers/index.php:56
+msgid "last"
+msgstr ""
+
+#: QueueGroups/index.php:50
+#: QueueLogs/index.php:52
+#: QueueJobs/index.php:68
+#: QueueWorkers/index.php:58
+msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+msgstr ""
+
+#: QueueGroups/view.php:12
+msgid "Delete Queue Group"
+msgstr ""
+
+#: QueueGroups/view.php:22
+#: QueueGroups/view.php:52
+#: QueueLogs/view.php:22
+#: QueueJobs/view.php:22
+#: QueueJobs/view.php:100
+#: QueueWorkers/view.php:22
+#: QueueWorkers/view.php:68
+#: QueueWorkers/view.php:105
+msgid "Id"
+msgstr ""
+
+#: QueueGroups/view.php:26
+#: QueueGroups/view.php:56
+#: QueueJobs/view.php:38
+#: QueueWorkers/view.php:30
+#: QueueWorkers/view.php:109
+msgid "Name"
+msgstr ""
+
+#: QueueGroups/view.php:30
+msgid "Slug"
+msgstr ""
+
+#: QueueGroups/view.php:34
+#: QueueWorkers/view.php:42
+msgid "Queue Task Count"
+msgstr ""
+
+#: QueueGroups/view.php:38
+#: QueueGroups/view.php:66
+#: QueueLogs/view.php:42
+#: QueueJobs/view.php:74
+#: QueueJobs/view.php:105
+#: QueueWorkers/view.php:54
+#: QueueWorkers/view.php:73
+#: QueueWorkers/view.php:118
+msgid "Created"
+msgstr ""
+
+#: QueueGroups/view.php:42
+#: QueueGroups/view.php:67
+#: QueueLogs/view.php:46
+#: QueueJobs/view.php:78
+#: QueueJobs/view.php:106
+#: QueueWorkers/view.php:58
+#: QueueWorkers/view.php:74
+#: QueueWorkers/view.php:119
+msgid "Modified"
+msgstr ""
+
+#: QueueGroups/view.php:47
+#: QueueWorkers/view.php:100
+msgid "Related Queue Tasks"
+msgstr ""
+
+#: QueueGroups/view.php:53
+#: QueueJobs/view.php:26
+#: QueueWorkers/view.php:106
+msgid "User Id"
+msgstr ""
+
+#: QueueGroups/view.php:54
+msgid "Queue Group Id"
+msgstr ""
+
+#: QueueGroups/view.php:55
+#: QueueJobs/view.php:102
+#: QueueWorkers/view.php:70
+#: QueueWorkers/view.php:107
+msgid "Queue Worker Id"
+msgstr ""
+
+#: QueueGroups/view.php:57
+msgid "Reference"
+msgstr ""
+
+#: QueueGroups/view.php:58
+#: QueueJobs/view.php:42
+#: QueueWorkers/view.php:110
+msgid "Progress"
+msgstr ""
+
+#: QueueGroups/view.php:59
+#: QueueJobs/view.php:83
+#: QueueWorkers/view.php:111
+msgid "Additional Data"
+msgstr ""
+
+#: QueueGroups/view.php:60
+#: QueueJobs/view.php:62
+#: QueueWorkers/view.php:112
+msgid "Start At"
+msgstr ""
+
+#: QueueGroups/view.php:61
+#: QueueJobs/view.php:66
+#: QueueWorkers/view.php:113
+msgid "Executed At"
+msgstr ""
+
+#: QueueGroups/view.php:62
+#: QueueJobs/view.php:70
+#: QueueWorkers/view.php:114
+msgid "Completed At"
+msgstr ""
+
+#: QueueGroups/view.php:63
+#: QueueJobs/view.php:46
+#: QueueWorkers/view.php:115
+msgid "Failed"
+msgstr ""
+
+#: QueueGroups/view.php:64
+#: QueueJobs/view.php:89
+#: QueueWorkers/view.php:116
+msgid "Failure Message"
+msgstr ""
+
+#: QueueGroups/view.php:65
+#: QueueJobs/view.php:50
+#: QueueWorkers/view.php:117
+msgid "Priority"
+msgstr ""
+
+#: QueueGroups/view.php:68
+#: QueueLogs/view.php:38
+#: QueueJobs/view.php:54
+#: QueueJobs/view.php:107
+#: QueueWorkers/view.php:38
+#: QueueWorkers/view.php:75
+#: QueueWorkers/view.php:120
+msgid "Status"
+msgstr ""
+
+#: QueueGroups/view.php:69
+#: QueueJobs/view.php:58
+#: QueueWorkers/view.php:46
+#: QueueWorkers/view.php:121
+msgid "Queue Log Count"
+msgstr ""
+
+#: QueueLogs/add.php:11
+#: QueueLogs/edit.php:16
+#: QueueLogs/view.php:13
+msgid "List Queue Logs"
+msgstr ""
+
+#: QueueLogs/add.php:18
+msgid "Add Queue Log"
+msgstr ""
+
+#: QueueLogs/edit.php:23
+#: QueueLogs/view.php:11
+msgid "Edit Queue Log"
+msgstr ""
+
+#: QueueLogs/index.php:8
+#: QueueLogs/view.php:14
+msgid "New Queue Log"
+msgstr ""
+
+#: QueueLogs/index.php:9
+msgid "Queue Logs"
+msgstr ""
+
+#: QueueLogs/view.php:12
+msgid "Delete Queue Log"
+msgstr ""
+
+#: QueueLogs/view.php:26
+msgid "Queue Task"
+msgstr ""
+
+#: QueueLogs/view.php:30
+#: QueueJobs/view.php:30
+msgid "Queue Worker"
+msgstr ""
+
+#: QueueLogs/view.php:34
+#: QueueJobs/view.php:103
+#: QueueWorkers/view.php:71
+msgid "Message"
+msgstr ""
+
+#: QueueLogs/view.php:51
+#: QueueJobs/view.php:104
+#: QueueWorkers/view.php:72
+msgid "Data Result"
+msgstr ""
+
+#: QueueJobs/add.php:11
+#: QueueJobs/edit.php:16
+#: QueueJobs/view.php:13
+msgid "List Queue Tasks"
+msgstr ""
+
+#: QueueJobs/add.php:18
+msgid "Add Queue Task"
+msgstr ""
+
+#: QueueJobs/edit.php:23
+#: QueueJobs/view.php:11
+msgid "Edit Queue Task"
+msgstr ""
+
+#: QueueJobs/index.php:8
+#: QueueJobs/view.php:14
+msgid "New Queue Task"
+msgstr ""
+
+#: QueueJobs/index.php:9
+msgid "Queue Tasks"
+msgstr ""
+
+#: QueueJobs/view.php:12
+msgid "Delete Queue Task"
+msgstr ""
+
+#: QueueJobs/view.php:34
+#: QueueWorkers/view.php:108
+msgid "Type"
+msgstr ""
+
+#: QueueJobs/view.php:95
+#: QueueWorkers/view.php:63
+msgid "Related Queue Logs"
+msgstr ""
+
+#: QueueJobs/view.php:101
+#: QueueWorkers/view.php:69
+msgid "Queue Task Id"
+msgstr ""
+
+#: QueueWorkers/add.php:11
+#: QueueWorkers/edit.php:16
+#: QueueWorkers/view.php:13
+msgid "List Queue Workers"
+msgstr ""
+
+#: QueueWorkers/add.php:18
+msgid "Add Queue Worker"
+msgstr ""
+
+#: QueueWorkers/edit.php:23
+#: QueueWorkers/view.php:11
+msgid "Edit Queue Worker"
+msgstr ""
+
+#: QueueWorkers/index.php:8
+#: QueueWorkers/view.php:14
+msgid "New Queue Worker"
+msgstr ""
+
+#: QueueWorkers/index.php:9
+msgid "Queue Workers"
+msgstr ""
+
+#: QueueWorkers/view.php:12
+msgid "Delete Queue Worker"
+msgstr ""
+
+#: QueueWorkers/view.php:26
+msgid "Server"
+msgstr ""
+
+#: QueueWorkers/view.php:34
+msgid "Pid"
+msgstr ""
+
+#: QueueWorkers/view.php:50
+msgid "Terminated At"
+msgstr ""
+

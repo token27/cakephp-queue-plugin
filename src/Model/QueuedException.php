@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue\Model;
+namespace Queue\Model;
 
 use Cake\Core\Exception\Exception;
 

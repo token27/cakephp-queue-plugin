@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue\Queue;
+namespace Queue\Queue;
 
 use Cake\Core\App;
 use Cake\Core\Plugin;

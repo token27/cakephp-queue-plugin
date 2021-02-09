@@ -29,7 +29,7 @@ class TestJob {
 ```php
 <?php
 
-use Token27\Queue\TaskJob;
+use Queue\TaskJob;
 
 $data = [
     'name' => 'Testing',

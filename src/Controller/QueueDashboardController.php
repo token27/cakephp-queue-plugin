@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Token27\Queue\Controller;
+namespace Queue\Controller;
 
 # CAKEPHP
 
 use Cake\Core\Configure;
-use Queue\Controller\QueueController;
 use Cake\Core\Exception;
 # PLUGIN
-use Token27\Queue\Config as QueueConfig;
-use Token27\Queue\TaskFinder;
+use Queue\Config;
+use Queue\TaskFinder;
+use Queue\Controller\QueueController;
 
 #
-use Token27\Queue\TaskJob;
+use Queue\TaskJob;
 
 /**
  * QueueDashboard Controller
@@ -59,7 +59,7 @@ class QueueDashboardController extends QueueController {
 
         $data = $this->QueueJobs->getStats();
 
-        $tasks = $this->taskFinder->allAppAndPluginTasks();
+        $tasks = $this->tasksFinder->getAllShellTasks();
 
         $servers = $this->QueueWorkers
                 ->find()
@@ -94,10 +94,10 @@ class QueueDashboardController extends QueueController {
 
             echo "Load config..." . PHP_EOL;
 
-            QueueConfig::loadPluginConfiguration();
-            var_dump(QueueConfig::defaultDatabaseConnection());
-            var_dump(QueueConfig::workersMax());
-            var_dump(QueueConfig::workerMaxRuntime());
+            Config::loadPluginConfiguration();
+            var_dump(Config::defaultDatabaseConnection());
+            var_dump(Config::workersMax());
+            var_dump(Config::workerMaxRuntime());
         } catch (\Exception $ex) {
             var_dump($ex->getMessage());
         }
@@ -113,7 +113,7 @@ class QueueDashboardController extends QueueController {
         echo "<pre>";
         try {
             $taskFinder = new TaskFinder();
-            $tasks = $taskFinder->allAppAndPluginTasks(false, true);
+            $tasks = $taskFinder->getAllShellTasks();
             var_dump($tasks);
         } catch (\Exception $ex) {
             var_dump($ex->getMessage());

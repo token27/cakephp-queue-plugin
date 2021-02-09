@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Token27\Queue\Transport;
+namespace Queue\Transport;
 
 # CAKEPHP
 
@@ -10,11 +10,11 @@ use Cake\Core\Configure;
 use Cake\I18n\I18n;
 
 # PLUGIN
-use Token27\Queue\Transport\Transport;
-use Token27\Queue\Transport\TransportInterface;
-use Token27\Queue\Transport\JobInterface;
-use Token27\Queue\TaskJob;
-use Token27\Queue\Shell\Task\QueueJobTask;
+use Queue\Transport\Transport;
+use Queue\Transport\TransportInterface;
+use Queue\Transport\JobInterface;
+use Queue\TaskJob;
+use Queue\Shell\Task\QueueJobTask;
 
 class JobTransport extends Transport implements TransportInterface {
 

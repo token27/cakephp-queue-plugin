@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue\Shell\Task;
+namespace Queue\Shell\Task;
 
 use Queue\Shell\Task\QueueTask;
 use Queue\Shell\Task\AddInterface;

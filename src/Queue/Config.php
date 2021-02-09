@@ -1,9 +1,9 @@
 <?php
 
-namespace Token27\Queue\Queue;
+namespace Queue\Queue;
 
 use Cake\Core\App;
-use Cake\Core\Configure as CakePHPConfigure;
+use Cake\Core\Configure;
 use RuntimeException;
 
 class Config {
@@ -12,12 +12,20 @@ class Config {
         self::loadPluginConfiguration();
     }
 
+    public static function loadPluginConfiguration() {
+        if (file_exists(ROOT . DS . 'config' . DS . 'app_queue.php')) {
+            Configure::load('app_queue');
+        } else {
+            Configure::load('Queue.app_queue');
+        }
+    }
+
     public static function defaultDatabaseConnection() {
-        return CakePHPConfigure::read('Queue.database_connection', null);
+        return Configure::read('Queue.database_connection', null);
     }
 
     public static function defaultMemoryLimit() {
-        return CakePHPConfigure::read('Queue.default_memory_limit', "512M");
+        return Configure::read('Queue.default_memory_limit', "512M");
     }
 
     /**
@@ -28,7 +36,7 @@ class Config {
      * @return int
      */
     public static function defaultPhpTimeout() {
-        return CakePHPConfigure::read('Queue.default_timeout_php', 0); // worker_max_run_time * 100
+        return Configure::read('Queue.default_timeout_php', 0); // worker_max_run_time * 100
     }
 
     /**
@@ -39,14 +47,14 @@ class Config {
      * @return int
      */
     public static function defaultWorkerTimeout() {
-        return CakePHPConfigure::read('Queue.default_worker_timeout', 600); // 10min
+        return Configure::read('Queue.default_worker_timeout', 600); // 10min
     }
 
     /**
      * @return int
      */
     public static function defaultWorkerRetries() {
-        return CakePHPConfigure::read('Queue.default_worker_retries', 1);
+        return Configure::read('Queue.default_worker_retries', 1);
     }
 
     /**
@@ -55,14 +63,14 @@ class Config {
      * @return int
      */
     public static function workerMaxRuntime() {
-        return CakePHPConfigure::read('Queue.worker_max_runtime', 120);
+        return Configure::read('Queue.worker_max_runtime', 120);
     }
 
     /**
      * @return int
      */
     public static function workerSleeptime() {
-        return CakePHPConfigure::read('Queue.worker_sleep_time', 10);
+        return Configure::read('Queue.worker_sleep_time', 10);
     }
 
     /**
@@ -71,28 +79,28 @@ class Config {
      * @return int
      */
     public static function cleanupTimeout() {
-        return CakePHPConfigure::read('Queue.cleanup_timeout', 2592000); // 30 days
+        return Configure::read('Queue.cleanup_timeout', 2592000); // 30 days
     }
 
     /**
      * @return int
      */
     public static function workersMax() {
-        return CakePHPConfigure::read('Queue.workers_max', 3);
+        return Configure::read('Queue.workers_max', 3);
     }
 
     /**
      * @return int
      */
     public static function cleanProb() {
-        return CakePHPConfigure::read('Queue.clean_olds_prob', 10);
+        return Configure::read('Queue.clean_olds_prob', 10);
     }
 
     /**
      * @param string[] $tasks
      *
-     * @throws \RuntimeException
      * @return array
+     * @throws \RuntimeException
      */
     public static function taskConfig(array $tasks): array {
         $config = [];
@@ -117,7 +125,7 @@ class Config {
 
 
             /**
-             * @TODO Fix, fix, fix, and more fix !!!              
+             * @TODO Fix, fix, fix, and more fix !!!
              * @warning If you read this code your head may explode, try not to read much !
              */
             $config[$taskName]['name'] = substr($taskName, 6);
@@ -130,14 +138,6 @@ class Config {
         }
 
         return $config;
-    }
-
-    public static function loadPluginConfiguration() {
-        if (file_exists(ROOT . DS . 'config' . DS . 'app_queue.php')) {
-            CakePHPConfigure::load('app_queue');
-        } else {
-            CakePHPConfigure::load('Queue.app_queue');
-        }
     }
 
 }

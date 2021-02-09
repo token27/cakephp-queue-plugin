@@ -1,13 +1,13 @@
 <?php
 
-namespace Token27\Queue\Shell\Task;
+namespace Queue\Shell\Task;
 
 use Cake\Console\ConsoleIo;
 use Cake\Console\Shell;
 use Cake\ORM\Locator\LocatorInterface;
 use InvalidArgumentException;
 
-//use Token27\Queue\TaskJob;
+//use Queue\TaskJob;
 //use Queue\Shell\Task\AddInterface;
 //use Queue\Transport\JobInterface;
 //use Queue\Shell\Task\QueueJobTaskInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Token27\Queue\Controller;
+namespace Queue\Controller;
 
 # CAKEPHP
 
@@ -11,7 +11,7 @@ use Cake\Core\App;
 use Cake\Http\Exception\NotFoundException;
 
 # PLUGIN 
-use Token27\Queue\TaskFinder;
+use Queue\Utility\TasksFinder;
 
 /**
  * QueueController Controller
@@ -25,9 +25,9 @@ class QueueController extends AppController {
 
     /**
      *
-     * @var Queue\Queue\TaskFinder; 
+     * @var Token27\Queue\Utility\TasksFinder; 
      */
-    public $taskFinder = null;
+    public $tasksFinder;
 
     /**
      * Initialization hook method.
@@ -40,11 +40,11 @@ class QueueController extends AppController {
      */
     public function initialize(): void {
         parent::initialize();
-        $this->taskFinder = new TaskFinder();
-        $this->loadModel('Queue.QueueJobs');
-        $this->loadModel('Queue.QueueWorkers');
-        $this->loadModel('Queue.QueueGroups');
-        $this->loadModel('Queue.QueueLogs');
+        $this->tasksFinder = new TasksFinder();
+        $this->loadModel('Token27/Queue.QueueJobs');
+        $this->loadModel('Token27/Queue.QueueWorkers');
+        $this->loadModel('Token27/Queue.QueueGroups');
+        $this->loadModel('Token27/Queue.QueueLogs');
         $this->viewBuilder()->setHelpers(['Tools.Time', 'Tools.Format', 'Tools.Text', 'Shim.Configure', 'Html', 'Form']);
     }
 

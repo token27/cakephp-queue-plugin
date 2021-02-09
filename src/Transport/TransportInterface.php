@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Token27\Queue\Transport;
+namespace Queue\Transport;
 
-use Token27\Queue\Transport\JobInterface;
+use Queue\Transport\JobInterface;
 
 interface TransportInterface {
 

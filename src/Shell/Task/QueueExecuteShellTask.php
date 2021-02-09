@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue\Shell\Task;
+namespace Queue\Shell\Task;
 
 # CAKEPHP
 
@@ -8,9 +8,9 @@ use Cake\Core\App;
 use Cake\Utility\Inflector;
 use Cake\Utility\Text;
 # PLUGIN
-use Token27\Queue\Shell\Task\QueueTask;
-use Token27\Queue\Shell\Task\AddInterface;
-use Token27\Queue\Model\QueueException;
+use Queue\Shell\Task\QueueTask;
+use Queue\Shell\Task\AddInterface;
+use Queue\Model\QueueException;
 
 /**
  * Execute a Local command on the server.

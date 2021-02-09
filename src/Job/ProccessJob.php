@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue\Job;
+namespace Queue\Job;
 
 class ProccessJob {
 

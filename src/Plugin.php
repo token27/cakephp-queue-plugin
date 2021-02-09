@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue;
+namespace Queue;
 
 # CAKEPHP
 
@@ -14,8 +14,9 @@ use Cake\Http\MiddlewareQueue;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
 # PLUGIN
-use Token27\Queue\Config as WorkerConfig;
-use Token27\Queue\Listener\TaskEventsListener;
+use Queue\Queue\Config;
+// Config::class;
+use Queue\Listener\QueueEventsListener;
 
 /**
  * Plugin for Queue
@@ -42,10 +43,10 @@ class Plugin extends BasePlugin {
         /**
          * @note Optionally load additional queue config defaults from local app config
          */
-        WorkerConfig::loadPluginConfiguration();
+        Config::loadPluginConfiguration();
 
 
-        EventManager::instance()->on(new TaskEventsListener());
+        EventManager::instance()->on(new QueueEventsListener());
         /**
          *  @note For IdeHelper plugin if in use.
          *        Make sure to run `bin/cake phpstorm generate` then.

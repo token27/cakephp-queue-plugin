@@ -1,6 +1,6 @@
 <?php
 
-namespace Token27\Queue\Shell;
+namespace Queue\Shell;
 
 # CAKEPHP
 
@@ -16,18 +16,18 @@ use Cake\ORM\Exception\PersistenceFailedException;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
 # PLUGIN 
-use Token27\Queue\TaskFinder;
-use Token27\Queue\Config as WorkerConfig;
-use Token27\Queue\Model\Entity\QueueTask;
-use Token27\Queue\Model\Entity\QueueWorker;
-use Token27\Queue\Model\ProcessEndingException;
-use Token27\Queue\Model\QueueException;
-use Token27\Queue\Shell\Task\QueueTaskInterface;
+use Queue\TaskFinder;
+use Queue\Config as WorkerConfig;
+use Queue\Model\Entity\QueueTask;
+use Queue\Model\Entity\QueueWorker;
+use Queue\Model\ProcessEndingException;
+use Queue\Model\QueueException;
+use Queue\Shell\Task\QueueTaskInterface;
 #
-use Token27\Queue\TaskJob;
-//use Token27\Queue\Transport\JobInterface;
-//use Token27\Queue\Transport\QueueJobTaskInterface;
-//use Token27\Queue\Transport\QueueJobTask;
+use Queue\TaskJob;
+//use Queue\Transport\JobInterface;
+//use Queue\Transport\QueueJobTaskInterface;
+//use Queue\Transport\QueueJobTask;
 //use Task\AddInterface;
 //use App\QueueTasks\QueueProgressJobExampleTask;
 # OTHERS

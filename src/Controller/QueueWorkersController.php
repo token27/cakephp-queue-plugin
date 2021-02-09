@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Token27\Queue\Controller;
+namespace Queue\Controller;
 
-use Token27\Queue\Controller\QueueController;
+use Queue\Controller\QueueController;
 
 /**
  * QueueWorkers Controller

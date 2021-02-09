@@ -32,13 +32,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Token27\\Queue\\": "src/",
-            "Token27\\Queue\\Test\\Fixture\\": "tests/Fixture/"
+            "Queue\\": "src/",
+            "Queue\\Test\\Fixture\\": "tests/Fixture/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Token27\\Queue\\Test\\": "tests/"            
+            "Queue\\Test\\": "tests/"            
         }
     },
     "prefer-stable": true,

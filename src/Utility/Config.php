@@ -1,6 +1,6 @@
 <?php
 
-namespace Queue\Queue;
+namespace Queue\Utility;
 
 use Cake\Core\App;
 use Cake\Core\Configure;

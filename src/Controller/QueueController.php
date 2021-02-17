@@ -41,10 +41,10 @@ class QueueController extends AppController {
     public function initialize(): void {
         parent::initialize();
         $this->tasksFinder = new TasksFinder();
-        $this->loadModel('Token27/Queue.QueueJobs');
-        $this->loadModel('Token27/Queue.QueueWorkers');
-        $this->loadModel('Token27/Queue.QueueGroups');
-        $this->loadModel('Token27/Queue.QueueLogs');
+        $this->loadModel('Queue.QueueJobs');
+        $this->loadModel('Queue.QueueWorkers');
+        $this->loadModel('Queue.QueueGroups');
+        $this->loadModel('Queue.QueueLogs');
         $this->viewBuilder()->setHelpers(['Tools.Time', 'Tools.Format', 'Tools.Text', 'Shim.Configure', 'Html', 'Form']);
     }
 

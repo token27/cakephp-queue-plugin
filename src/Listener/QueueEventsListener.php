@@ -2,8 +2,13 @@
 
 namespace Queue\Listener;
 
+# CAKEPHPS
+
 use Cake\Event\EventListenerInterface;
 use Cake\ORM\TableRegistry;
+
+# PLUGIN
+use Queue\Utility\Config;
 
 class QueueEventsListener implements EventListenerInterface {
 

@@ -41,8 +41,8 @@ class QueuedShell extends Shell {
         $this->taskFinder = new TaskFinder();
         $this->tasks = $this->taskFinder->getAllTasks();
         parent::initialize();
-        $this->loadModel('Token27/Queue.QueueTasks');
-        $this->loadModel('Token27/Queue.QueueWorkers');
+        $this->loadModel('Queue.QueueTasks');
+        $this->loadModel('Queue.QueueWorkers');
     }
 
     /**

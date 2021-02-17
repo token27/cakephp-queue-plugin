@@ -10,16 +10,16 @@ composer require token27/cakephp-queue-plugin
 ```
 Load the plugin in your `src/Application.php`'s bootstrap() using:
 ```php
-$this->addPlugin('Token27/Queue');
+$this->addPlugin('Queue');
 ```
 If you want to also access the backend controller (not just using CLI), you need to use
 ```php
-$this->addPlugin('Token27/Queue', ['routes' => true]);
+$this->addPlugin('Queue', ['routes' => true]);
 ```
 
 Run the following command in the CakePHP console to create the tables using the Migrations plugin:
 ```sh
-bin/cake migrations migrate -p Token27/Queue
+bin/cake migrations migrate -p Queue
 ```
 
 It is also advised to have the `posix` PHP extension enabled.

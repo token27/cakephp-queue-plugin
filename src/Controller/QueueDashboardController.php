@@ -9,8 +9,8 @@ namespace Queue\Controller;
 use Cake\Core\Configure;
 use Cake\Core\Exception;
 # PLUGIN
-use Queue\Config;
-use Queue\TaskFinder;
+use Queue\Utility\Config;
+use Queue\Utility\TaskFinder;
 use Queue\Controller\QueueController;
 
 #

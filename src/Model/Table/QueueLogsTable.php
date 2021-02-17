@@ -14,7 +14,7 @@ use Cake\Core\Configure;
 use Cake\I18n\FrozenTime;
 
 # PLUGIN
-use Queue\Queue\Config;
+use Queue\Utility\Config;
 use Queue\Model\ProcessEndingException;
 
 /**

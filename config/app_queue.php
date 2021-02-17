@@ -40,6 +40,6 @@ return [
         // enable Search. requires frontend assets
         'isStatisticEnabled' => true,
         //
-        'defaultLocale' => 'en_US'
+        'defaultLocale' => 'en_US',
     ],
 ];

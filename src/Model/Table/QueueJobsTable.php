@@ -21,7 +21,7 @@ use Cake\Event\Event;
 use Cake\Model\Table\EntityInterface;
 
 # PLUGIN
-use Queue\Queue\Config;
+use Queue\Utility\Config;
 use Queue\Model\Entity\QueueJob;
 //use Queue\Model\Table\Event;
 #  OTHERS

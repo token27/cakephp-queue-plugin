@@ -13,9 +13,9 @@ use Cake\Http\Middleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
+
 # PLUGIN
-use Queue\Queue\Config;
-// Config::class;
+use Queue\Utility\Config;
 use Queue\Listener\QueueEventsListener;
 
 /**

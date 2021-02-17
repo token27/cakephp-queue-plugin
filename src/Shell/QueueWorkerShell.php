@@ -227,8 +227,6 @@ class QueueWorkerShell extends Shell {
     public function initialize(): void {
         WorkerConfig::loadPluginConfiguration();
         $this->taskFinder = new TaskFinder();
-//        var_dump($taskFinder);
-//        exit();
         $this->tasks = $this->taskFinder->getAllTasks();
         $this->loadModel('Queue.QueueTasks');
         $this->loadModel('Queue.QueueWorkers');

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Queue\Transport;
 
-use Queue\Transport\JobInterface;
+use Queue\Job\JobInterface;
 
 interface TransportInterface {
 

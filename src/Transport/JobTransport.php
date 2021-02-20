@@ -13,8 +13,8 @@ use Cake\I18n\I18n;
 use Queue\Transport\Transport;
 use Queue\Transport\TransportInterface;
 use Queue\Transport\JobInterface;
-use Queue\TaskJob;
-use Queue\Shell\Task\QueueJobTask;
+use Queue\Job\TaskJob;
+use Queue\Shell\Task\QueueTask;
 
 class JobTransport extends Transport implements TransportInterface {
 

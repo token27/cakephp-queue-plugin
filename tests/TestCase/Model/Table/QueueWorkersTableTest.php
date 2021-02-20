@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Queue\Test\TestCase\Model\Table;
@@ -9,8 +10,8 @@ use Queue\Model\Table\QueueWorkersTable;
 /**
  * Queue\Model\Table\QueueWorkersTable Test Case
  */
-class QueueWorkersTableTest extends TestCase
-{
+class QueueWorkersTableTest extends TestCase {
+
     /**
      * Test subject
      *
@@ -34,8 +35,7 @@ class QueueWorkersTableTest extends TestCase
      *
      * @return void
      */
-    public function setUp(): void
-    {
+    public function setUp(): void {
         parent::setUp();
         $config = $this->getTableLocator()->exists('QueueWorkers') ? [] : ['className' => QueueWorkersTable::class];
         $this->QueueWorkers = $this->getTableLocator()->get('QueueWorkers', $config);
@@ -46,8 +46,7 @@ class QueueWorkersTableTest extends TestCase
      *
      * @return void
      */
-    public function tearDown(): void
-    {
+    public function tearDown(): void {
         unset($this->QueueWorkers);
 
         parent::tearDown();
@@ -58,8 +57,7 @@ class QueueWorkersTableTest extends TestCase
      *
      * @return void
      */
-    public function testValidationDefault(): void
-    {
+    public function testValidationDefault(): void {
         $this->markTestIncomplete('Not implemented yet.');
     }
 
@@ -68,8 +66,8 @@ class QueueWorkersTableTest extends TestCase
      *
      * @return void
      */
-    public function testBuildRules(): void
-    {
+    public function testBuildRules(): void {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
 }

@@ -14,7 +14,7 @@ use Cake\Event\Event;
 use Cake\Event\EventManager;
 
 # PLUGIN
-use Queue\TaskJob;
+use Queue\Job\TaskJob;
 
 class QueueManager {
 

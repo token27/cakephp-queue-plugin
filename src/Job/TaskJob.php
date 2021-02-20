@@ -1,16 +1,15 @@
 <?php
 
-namespace Queue\Queue;
+namespace Queue\Job;
 
 //use Cake\Mailer\Email;
 //use Josegonzalez\CakeQueuesadilla\Queue\Queue;
-use Queue\Transport\Job;
-use Queue\Transport\JobInterface;
+use Queue\Job\Job;
+use Queue\Job\JobInterface;
 use Queue\Transport\JobTransport;
 use Queue\Model\Table\QueueJobsTable;
 use Queue\Model\Entity\QueueJob;
 use Queue\Shell\Task\QueueJobTask;
-
 //use Queue\Model\Task\QueueWorker;
 use Queue\Model\Entity\QueueWorker;
 
@@ -20,8 +19,7 @@ use InvalidArgumentException;
 /**
  * @method unserialize(string $data)
  */
-class TaskJob extends Job
-{
+class TaskJob extends Job {
 
     /**
      * Transport class
@@ -54,8 +52,7 @@ class TaskJob extends Job
      *
      * @param array|null $data_queue_task
      */
-    public function __construct(?array $config = null)
-    {
+    public function __construct(?array $config = null) {
         parent::__construct();
 //        if ($queueTask === null) {
 //            throw new InvalidArgumentException("QueueJob cannot be null.");
@@ -90,8 +87,7 @@ class TaskJob extends Job
      *
      * @return \Queue\Transport\JobInterface
      */
-    public function run($task = null): void
-    {
+    public function run($task = null): void {
         if ($task !== null) {
             $this->_task = $task;
         }
@@ -107,8 +103,7 @@ class TaskJob extends Job
      * @param string|array|null $content String with message or array with messages
      * @return \Queue\Transport\JobInterface
      */
-    public function push(): bool
-    {
+    public function push(): bool {
         return JobTransport::scheduleJob($this);
     }
 
@@ -118,8 +113,7 @@ class TaskJob extends Job
      * @param string|array|null $content String with message or array with messages
      * @return \Queue\Transport\JobInterface
      */
-    public function send($content = null): JobInterface
-    {
+    public function send($content = null): JobInterface {
         return JobTransport::runJob($this, $content);
     }
 
@@ -142,8 +136,7 @@ class TaskJob extends Job
      *
      * @return
      */
-    public function queueTask(): QueueJob
-    {
+    public function queueTask(): QueueJob {
         return $this->_queueTask;
     }
 
@@ -152,8 +145,7 @@ class TaskJob extends Job
      *
      * @return
      */
-    public function queueJobTask(): QueueJobTask
-    {
+    public function queueJobTask(): QueueJobTask {
         return $this->_task;
     }
 
@@ -164,8 +156,7 @@ class TaskJob extends Job
      * @param array $args arguments
      * @return \Queue\Queue\TaskJob
      */
-    public function __call(string $name, array $args): TaskJob
-    {
+    public function __call(string $name, array $args): TaskJob {
 //        call_user_func_array([$this->_queueTask, $name], $args);
 //        if ($this->_queueWorker !== null) {
 //            call_user_func_array([$this->_queueWorker, $name], $args);

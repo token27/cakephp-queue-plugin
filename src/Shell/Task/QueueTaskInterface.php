@@ -9,7 +9,7 @@ namespace Queue\Shell\Task;
  * Either throw an exception with an error message, or use $this->abort('My message'); to fail a job.
  *
  */
-interface QueueJobTaskInterface {
+interface QueueTaskInterface {
 
     /**
      * Main execution of the task.

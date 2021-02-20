@@ -18,7 +18,7 @@ use RuntimeException;
 use Throwable;
 
 # PLUGIN 
-use Queue\TaskFinder;
+use Queue\Utility\TasksFinder;
 use Queue\Shell\Task\AddInterface;
 
 declare(ticks=1);
@@ -27,9 +27,9 @@ class QueuedShell extends Shell {
 
     /**
      *
-     * @var Queue\Queue\TaskFinder; 
+     * @var Queue\Utility\TaskFinder; 
      */
-    public $taskFinder = null;
+    public $tasksFinder = null;
 
     /**
      * Overwrite shell initialize to dynamically load all Queue Related Tasks.
@@ -38,8 +38,8 @@ class QueuedShell extends Shell {
      */
     public function initialize(): void {
         exit();
-        $this->taskFinder = new TaskFinder();
-        $this->tasks = $this->taskFinder->getAllTasks();
+        $this->tasksFinder = new TasksFinder();
+        $this->tasks = $this->tasksFinder->getAllTasks();
         parent::initialize();
         $this->loadModel('Queue.QueueTasks');
         $this->loadModel('Queue.QueueWorkers');
@@ -313,7 +313,7 @@ class QueuedShell extends Shell {
         $this->info('  -> Searching APP tasks...');
         $this->out(' ');
 
-        $appTasks = $this->taskFinder->getAllAppTasks();
+        $appTasks = $this->tasksFinder->getAllAppTasks();
         if (count($appTasks) > 0) {
             $this->success('  -> Success, APP task(s) found. <-');
             $this->out(' ');
@@ -334,7 +334,7 @@ class QueuedShell extends Shell {
     private function _showPluginsTasks() {
         $this->info('  -> Searching PLUGINS tasks...');
         $this->out(' ');
-        $pluginsTasks = $this->taskFinder->getAllPluginsTasks();
+        $pluginsTasks = $this->tasksFinder->getAllPluginsTasks();
         if (count($pluginsTasks) > 0) {
             $this->success('  -> Success, PLUGIN task(s) found. <-');
             $this->out(' ');

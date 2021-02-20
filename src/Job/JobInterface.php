@@ -1,6 +1,6 @@
 <?php
 
-namespace Queue\Transport;
+namespace Queue\Job;
 
 /**
  * Any task needs to at least implement run().
@@ -24,6 +24,7 @@ interface JobInterface {
      * @return \Queue\Transport\JobInterface
      */
     public function send($content = null): JobInterface;
+
 //
 //    /**
 //     *  Run the job 

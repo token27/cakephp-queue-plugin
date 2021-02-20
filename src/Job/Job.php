@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Queue\Transport;
+namespace Queue\Job;
 
 use Cake\Core\Configure;
 use Cake\Utility\Hash;
 use InvalidArgumentException;
 #
-use Queue\Transport\JobInterface;
+use Queue\Job\JobInterface;
 
 abstract class Job implements JobInterface {
 

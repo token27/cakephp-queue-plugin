@@ -16,20 +16,17 @@ use Cake\ORM\Exception\PersistenceFailedException;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
 # PLUGIN 
-use Queue\TaskFinder;
-use Queue\Config as WorkerConfig;
-use Queue\Model\Entity\QueueTask;
+use Queue\Utility\Config;
+use Queue\Utility\TasksFinder;
+use Queue\Model\Entity\QueueJob;
 use Queue\Model\Entity\QueueWorker;
 use Queue\Model\ProcessEndingException;
-use Queue\Model\QueueException;
-use Queue\Shell\Task\QueueTaskInterface;
 #
 use Queue\TaskJob;
-//use Queue\Transport\JobInterface;
-//use Queue\Transport\QueueJobTaskInterface;
-//use Queue\Transport\QueueJobTask;
-//use Task\AddInterface;
-//use App\QueueTasks\QueueProgressJobExampleTask;
+use Queue\Shell\Task\AddInterface;
+use Queue\Shell\Task\QueueTaskInterface;
+use Queue\Model\QueueException;
+
 # OTHERS
 use RuntimeException;
 use Throwable;
@@ -42,15 +39,21 @@ declare(ticks=1);
  *
  * @author 
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
- * @property \Queue\Model\Table\QueueTasksTable $QueueTasks
+ * @property \Queue\Model\Table\QueueJobsTable $QueueJobs
  * @property \Queue\Model\Table\QueueWorkersTable $QueueWorkers
  */
 class QueueWorkerShell extends Shell {
 
     /**
+     *
+     * @var Queue\Utility\TaskFinder; 
+     */
+    public $tasksFinder = null;
+
+    /**
      * @var string
      */
-    protected $modelClass = 'Queue.QueueTasks';
+    protected $modelClass = 'Queue.QueueJobs';
 
     /**
      * @var array|null
@@ -225,10 +228,10 @@ class QueueWorkerShell extends Shell {
      * @return void
      */
     public function initialize(): void {
-        WorkerConfig::loadPluginConfiguration();
-        $this->taskFinder = new TaskFinder();
-        $this->tasks = $this->taskFinder->getAllTasks();
-        $this->loadModel('Queue.QueueTasks');
+        Config::loadPluginConfiguration();
+        $this->tasksFinder = new TasksFinder();
+        $this->tasks = $this->tasksFinder->getAllShellTasks();
+        $this->loadModel('Queue.QueueJobs');
         $this->loadModel('Queue.QueueWorkers');
         parent::initialize();
     }
@@ -277,7 +280,7 @@ class QueueWorkerShell extends Shell {
             $this->_initPid();
         } catch (PersistenceFailedException $exception) {
             $this->err($exception->getMessage());
-            $limit = (int) WorkerConfig::workersMax();
+            $limit = (int) Config::workersMax();
             if ($limit) {
                 $this->out('Cannot start worker: Too many workers already/still running on this server (' . $limit . '/' . $limit . ')');
             }
@@ -312,7 +315,7 @@ class QueueWorkerShell extends Shell {
         } else {
             $this->success('  * Types: ALL');
         }
-        $this->out('  * Clean old task/workers probability: ' . WorkerConfig::cleanProb() . '%');
+        $this->out('  * Clean old task/workers probability: ' . Config::cleanProb() . '%');
         $this->hr();
         $this->info(' -> Functions');
 
@@ -372,7 +375,7 @@ class QueueWorkerShell extends Shell {
         $memoryUsage = $this->_memoryUsage();
         $this->info(' -> Memory Limit');
         $this->warn('  ! Current Usage: ' . $memoryUsage);
-        $this->warn('  ! Limit: ' . WorkerConfig::defaultMemoryLimit());
+        $this->warn('  ! Limit: ' . Config::defaultMemoryLimit());
         if (!$this->getWorkerTimeout()) {
             $this->err('  !! Be careful with this configuration, the worker can be in zombie mode.');
         } else {
@@ -397,25 +400,21 @@ class QueueWorkerShell extends Shell {
             } catch (RecordNotFoundException $exception) {
                 // Manually killed
                 $this->setExit(true);
-//                $this->_pid = null;
-//                $pid = null;
                 $this->err(' !! Record not found: ' . $exception->getMessage());
                 continue;
             } catch (ProcessEndingException $exception) {
                 // Soft killed, e.g. during deploy update
                 $this->setExit(true);
-//                $this->_pid = null;
-//                $pid = null;
                 $this->err(' !! Process Ending: ' . $exception->getMessage());
                 continue;
             }
 
             if ($this->param('verbose')) {
-                $this->_log('runworker', $pid, false);
+                $this->_log('runworker', $this->_worker->pid, false);
             }
             $this->info(' -> Looking for Queue Task...');
             $this->out('  * ' . date('H:i:s d-m-Y'));
-            $queueTask = $this->QueueTasks->requestQueueTask($this->_getTaskConf(), $groups, $types, $this->_worker->toArray());
+            $queueTask = $this->QueueJobs->requestQueueJob($this->_getTaskConf(), $groups, $types, $this->_worker->toArray());
 
 
             if ($queueTask) {
@@ -423,17 +422,14 @@ class QueueWorkerShell extends Shell {
                 $this->out(' -> Success, queue task found. <- ');
                 $this->out(' ');
 
-
-
-
                 $this->runTask($queueTask);
             } elseif (Configure::read('Queue.worker_exit_when_nothing_todo')) {
                 $this->warn('  ! Nothing to do, exiting.');
                 $this->setExit(true);
                 $this->_terminatePid($pid);
             } else {
-                $this->out('  * Nothing to do, sleeping ' . WorkerConfig::workerSleeptime() . ' seconds.');
-                sleep(WorkerConfig::workerSleeptime());
+                $this->out('  * Nothing to do, sleeping ' . Config::workerSleeptime() . ' seconds.');
+                sleep(Config::workerSleeptime());
             }
 
 
@@ -470,8 +466,8 @@ class QueueWorkerShell extends Shell {
                 $this->QueueWorkers->cleanEnded($this->getWorkerTimeout());
                 $this->QueueWorkers->cleanTimeouts();
                 $this->info(' -> Cleaning olds tasks...');
-                $this->QueueTasks->cleanOldTasks();
-//                $this->QueueTasks->cleanTimeouts($this->getWorkerTimeout(), $pid);
+                $this->QueueJobs->cleanOldTasks();
+//                $this->QueueJobs->cleanTimeouts($this->getWorkerTimeout(), $pid);
                 $this->success(' -> Success, cleanup finished. <-');
             }
             $this->hr();
@@ -502,7 +498,7 @@ class QueueWorkerShell extends Shell {
      * @return bool
      */
     public function isCleanupTime() {
-        return (bool) (mt_rand(0, 100) > (100 - (int) WorkerConfig::cleanProb()));
+        return (bool) (mt_rand(0, 100) > (100 - (int) Config::cleanProb()));
     }
 
     /**
@@ -537,12 +533,6 @@ class QueueWorkerShell extends Shell {
         $taskTimeStart = time();
         $this->setTaskStartTime(time());
 
-        /**
-         * @TODO Funcition callback before start
-         */
-//        if ($task instanceof QueueTaskCallbackInterface) {
-//             QueueTaskCallbackInterface::class
-//        }
 
         $return = $failureMessage = null;
         try {
@@ -561,37 +551,13 @@ class QueueWorkerShell extends Shell {
              */
             $task = $this->{$taskName};
             if (!$task instanceof QueueTaskInterface) {
-                echo 'Task must implement ' . QueueTaskInterface::class . PHP_EOL;
-//                throw new RuntimeException('Task must implement ' . QueueJobTask::class);
-            } else {
-                echo QueueTaskInterface::class . ' OK ' . PHP_EOL;
+                throw new RuntimeException('Task must implement ' . QueueTaskInterface::class);
             }
-            if (!$task instanceof QueueTask) {
-                echo 'Task must implement ' . QueueTask::class . PHP_EOL;
-//                throw new RuntimeException('Task must implement ' . QueueJobTask::class);
-            } else {
-                echo QueueTask::class . ' OK ' . PHP_EOL;
-            }
-            if (!$task instanceof AddInterface) {
-                echo 'Task must implement ' . AddInterface::class . PHP_EOL;
-//                throw new RuntimeException('Task must implement ' . QueueJobTask::class);
-            } else {
-                echo AddInterface::class . ' OK ' . PHP_EOL;
-            }
-
-            var_dump($queueTask);
-            var_dump($this->_worker);
-            var_dump($task);
-            sleep(20);
-
-            $this->QueueTasks->markTaskInProgress($queueTask, $this->_worker->id);
+            $this->QueueJobs->markTaskInProgress($queueTask, $this->_worker->id);
 
 //            $job_data = $additional_data;
-            $taskJob = new TaskJob($queueTask, $this->_worker, $task);
-            $taskJob->run();
-
-//            var_dump($taskJob);
-//            exit();
+//            $taskJob = new TaskJob($queueTask, $this->_worker, $task);
+//            $taskJob->run();
             $task->run($queueTask->id, (array) $additional_data);
         } catch (Throwable $e) {
             $return = false;
@@ -605,8 +571,8 @@ class QueueWorkerShell extends Shell {
         }
 
         if ($return === false) {
-            $this->QueueTasks->markTaskFailed($queueTask, $failureMessage);
-            $failedStatus = $this->QueueTasks->getFailedStatus($queueTask, $this->_getTaskConf());
+            $this->QueueJobs->markTaskFailed($queueTask, $failureMessage);
+            $failedStatus = $this->QueueJobs->getFailedStatus($queueTask, $this->_getTaskConf());
             $this->_log('task ' . $queueTask->name . ', id ' . $queueTask->id . ' failed and ' . $failedStatus, $this->_worker->pid);
             $this->err(' !! Task did not finish, ' . $failedStatus . ' after try ' . $queueTask->failed . '.');
 
@@ -615,7 +581,7 @@ class QueueWorkerShell extends Shell {
         $taskTimeEnd = time();
         $duration = intval($taskTimeEnd - $taskTimeStart);
 
-        $this->QueueTasks->markTaskDone($queueTask);
+        $this->QueueJobs->markTaskDone($queueTask);
         $this->hr();
         $this->out(' ');
         $this->success(' -> Success, "' . $queueTask->name . '" Task Finished, working time ' . $duration . ' second(s). <-');
@@ -623,12 +589,6 @@ class QueueWorkerShell extends Shell {
         $this->hr();
         $this->hr();
         $this->hr();
-
-        /**
-         * @TODO Funcition callback after end
-         */
-//        if ($task instanceof QueueTaskCallbackInterface) {
-//        }
     }
 
     /**
@@ -1001,7 +961,7 @@ class QueueWorkerShell extends Shell {
     }
 
     /**
-     * Returns a List of available QueueTasks and their individual configuration.
+     * Returns a List of available QueueJobs and their individual configuration.
      *
      * @return array
      */
@@ -1009,7 +969,7 @@ class QueueWorkerShell extends Shell {
         if (!is_array($this->_taskConf)) {
             /** @var array $tasks */
             $tasks = $this->tasks;
-            $this->_taskConf = WorkerConfig::taskConfig($tasks);
+            $this->_taskConf = Config::taskConfig($tasks);
         }
 
         return $this->_taskConf;
@@ -1037,7 +997,7 @@ class QueueWorkerShell extends Shell {
     }
 
     protected function _configMemoryLimit() {
-        $memoryLimit = WorkerConfig::defaultMemoryLimit();
+        $memoryLimit = Config::defaultMemoryLimit();
         try {
             ini_set("memory_limit", "$memoryLimit");
         } catch (Throwable $ex) {
@@ -1054,7 +1014,7 @@ class QueueWorkerShell extends Shell {
      * @return void
      */
     protected function _configPhpTimeout() {
-        $timeLimit = (int) WorkerConfig::defaultPhpTimeout();
+        $timeLimit = (int) Config::defaultPhpTimeout();
 
         $this->_configWorkerTimeout();
 
@@ -1082,12 +1042,12 @@ class QueueWorkerShell extends Shell {
      * @return void
      */
     protected function _configWorkerTimeout() {
-        $timeLimit = (int) WorkerConfig::workerMaxRuntime() * 100;
-        if (WorkerConfig::defaultWorkerTimeout() !== null) {
-            $timeLimit = (int) WorkerConfig::defaultWorkerTimeout();
+        $timeLimit = (int) Config::workerMaxRuntime() * 100;
+        if (Config::defaultWorkerTimeout() !== null) {
+            $timeLimit = (int) Config::defaultWorkerTimeout();
         }
         if (!$this->getPhpTimeout()) {
-            $this->setPhpTimeout(WorkerConfig::defaultPhpTimeout());
+            $this->setPhpTimeout(Config::defaultPhpTimeout());
         }
         if ($this->getPhpTimeout() < $timeLimit) {
             $this->setPhpTimeout(($this->getPhpTimeout() + $timeLimit));
